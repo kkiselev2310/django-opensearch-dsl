@@ -208,7 +208,7 @@ class Document(DSLDocument):
 
     def _prepare_action(self, object_instance: models.Model, action: BulkAction) -> dict[str, Any]:
         return {
-            "_op_type": action,
+            "_op_type": action.value,
             "_index": self._index._name,  # noqa
             "_id": self.generate_id(object_instance),
             "_source" if action != "update" else "doc": (self.prepare(object_instance) if action != "delete" else None),
